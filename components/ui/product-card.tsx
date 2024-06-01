@@ -2,18 +2,27 @@
 
 import { Product } from "@/public/type";
 import Image from "next/image";
+import { Expand, ShoppingCart } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 import IconButton from "@/components/ui/icon-button";
-import { Expand, ShoppingCart } from "lucide-react";
-import Currency from "./currency";
+import Currency from "@/components/ui/currency";
 
 interface ProductCardProps {
   data: Product;
 }
 
 export default function ProductCard({ data }: ProductCardProps) {
+  const router = useRouter();
+  const handleClick = () => {
+    router.push(`/product/${data?.id}`);
+  };
+
   return (
-    <div className="bg-white group cursor-pointer rounded-xl border p-3 space-y-4">
+    <div
+      onClick={handleClick}
+      className="bg-white group cursor-pointer rounded-xl border p-3 space-y-4"
+    >
       {/*product Image of card*/}
       <div className="aspect-square rounded-xl bg-gray-100 relative">
         <Image
@@ -44,7 +53,7 @@ export default function ProductCard({ data }: ProductCardProps) {
       </div>
       {/* Price */}
       <div className="flex items-center justify-between">
-        <Currency value={data.price} />
+        <Currency value={data?.price} />
       </div>
     </div>
   );
