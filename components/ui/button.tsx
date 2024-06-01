@@ -8,7 +8,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, children, disabled, type = "button", ...props }, ref) => {
     return (
       <button
-        ref={ref}
         className={cn(
           `w-auto 
           rounded-full
@@ -24,6 +23,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
            transition`,
           className
         )}
+        ref={ref}
+        {...props}
       >
         {children}
       </button>
