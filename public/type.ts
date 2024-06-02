@@ -15,8 +15,9 @@ export interface Product {
   category: Category;
   name: string;
   price: string;
+  description: string;
   isFeatured: boolean;
-  size: Size;
+  storage: Storage;
   color: Color;
   images: Images[];
 }
@@ -26,7 +27,7 @@ export interface Images {
   url: string;
 }
 
-export interface Size {
+export interface Storage {
   id: string;
   name: string;
   value: string;

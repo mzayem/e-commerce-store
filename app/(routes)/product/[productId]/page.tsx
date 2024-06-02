@@ -29,6 +29,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
               <Info data={product} />
             </div>
           </div>
+          <div className="mt-10 space-y-4">
+            <h3 className="font-bold text-3xl">Description</h3>
+            <p className="text-black">{product.description}</p>
+          </div>
+
           <hr className="my-10" />
           <ProductList title="Related Items" items={suggestedProduct} />
         </div>

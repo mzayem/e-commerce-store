@@ -1,7 +1,7 @@
 import getCategory from "@/actions/get-category";
 import getColors from "@/actions/get-colors";
 import getProducts from "@/actions/get-products";
-import getSizes from "@/actions/get-sizes";
+import getStorages from "@/actions/get-storages";
 
 import Billboard from "@/components/billboard";
 import Container from "@/components/ui/container";
@@ -19,7 +19,7 @@ interface CategoryPageProps {
   };
   searchParams: {
     colorId: string;
-    sizeId: string;
+    storageId: string;
   };
 }
 
@@ -30,10 +30,10 @@ export default async function CategoryPage({
   const products = await getProducts({
     categoryId: params.categoryId,
     colorId: searchParams.colorId,
-    sizeId: searchParams.sizeId,
+    storageId: searchParams.storageId,
   });
 
-  const sizes = await getSizes();
+  const storages = await getStorages();
   const colors = await getColors();
   const category = await getCategory(params.categoryId);
 
@@ -44,10 +44,10 @@ export default async function CategoryPage({
         <div className="px-4 sm:px-6 lg:px-8 pb-24">
           <div className="lg:grid lg:grid-cols-5 lg:gap-x-8">
             <div className="lg:hidden">
-              <MobileFilter sizes={sizes} colors={colors} />
+              <MobileFilter storages={storages} colors={colors} />
             </div>
             <div className="hidden lg:block">
-              <Filter valueKey="sizeId" name="Sizes" data={sizes} />
+              <Filter valueKey="storageId" name="Storages" data={storages} />
               <Filter valueKey="colorId" name="Colors" data={colors} />
             </div>
             <div className="mt-6 lg:col-span-4 lg:mt-0">

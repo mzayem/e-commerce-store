@@ -1,3 +1,5 @@
+"use client";
+
 import usePreviewModal from "@/hooks/use-preview-modal";
 
 import Info from "@/components/info";

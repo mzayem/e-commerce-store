@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Color, Size } from "@/public/type";
+import { Color, Storage } from "@/public/type";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Plus, X } from "lucide-react";
 
@@ -10,11 +10,11 @@ import IconButton from "@/components/ui/icon-button";
 import Filter from "./filter";
 
 interface MobileFilterProps {
-  sizes: Size[];
+  storages: Storage[];
   colors: Color[];
 }
 
-export default function MobileFilter({ sizes, colors }: MobileFilterProps) {
+export default function MobileFilter({ storages, colors }: MobileFilterProps) {
   const [open, setOpen] = useState(false);
 
   const onOpen = () => setOpen(true);
@@ -42,7 +42,7 @@ export default function MobileFilter({ sizes, colors }: MobileFilterProps) {
 
             {/* Filters */}
             <div className="p-4">
-              <Filter valueKey="sizeId" name="Sizes" data={sizes} />
+              <Filter valueKey="storageId" name="Storages" data={storages} />
               <Filter valueKey="colorId" name="Colors" data={colors} />
             </div>
           </DialogPanel>

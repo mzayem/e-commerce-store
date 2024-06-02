@@ -1,13 +1,23 @@
+"use client";
+
 import { Product } from "@/public/type";
 import Currency from "@/components/ui/currency";
 import Button from "./ui/button";
 import { ShoppingCart } from "lucide-react";
+import { MouseEventHandler } from "react";
+import useCart from "@/hooks/use-cart";
 
 interface InfoProps {
   data: Product;
 }
 
 export default function Info({ data }: InfoProps) {
+  const cart = useCart();
+  const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.stopPropagation();
+    cart.addItem(data);
+  };
+
   return (
     <div>
       <h1 className="text-3xl font-bold text-gray-900">{data.name}</h1>
@@ -22,10 +32,13 @@ export default function Info({ data }: InfoProps) {
           <h3 className="font-semibold text-black">Category: </h3>
           <div>{data?.category?.name}</div>
         </div>
-        <div className="flex items-center gap-x-4">
-          <h3 className="font-semibold text-black">Size: </h3>
-          <div>{data?.size?.name}</div>
-        </div>
+        {data.storage.name != "none" ? (
+          <div className="flex items-center gap-x-4">
+            <h3 className="font-semibold text-black">Storage: </h3>
+            <div>{data?.storage?.name}</div>
+          </div>
+        ) : null}
+
         <div className="flex items-center gap-x-4">
           <h3 className="font-semibold text-black">Color:</h3>
           <div
@@ -35,7 +48,7 @@ export default function Info({ data }: InfoProps) {
         </div>
       </div>
       <div className="mt-10 flex items-center gap-x-3">
-        <Button className="flex items-center gap-x-2">
+        <Button onClick={onAddToCart} className="flex items-center gap-x-2">
           Add To Cart
           <ShoppingCart />
         </Button>
