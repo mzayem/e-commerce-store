@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-        <NextTopLoader />
+        <NextTopLoader color="#000000" />
         <ModalProvider />
         <ToastProvider />
         <Navbar />
